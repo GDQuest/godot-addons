@@ -12,6 +12,32 @@ config_version=5
 
 config/features=PackedStringArray("4.0")
 
+[autoload]
+
+BackgroundInjector="*res://addons/sparkly_bag/autoloads/background_injector/background_injector.gd"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg", "res://addons/kenny_prototype_material/plugin.cfg")
+enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg", "res://addons/kenny_prototype_material/plugin.cfg", "res://addons/sparkly_bag/plugin.cfg")
+
+[importer_defaults]
+
+scene={
+"_subresources": {},
+"animation/fps": 30,
+"animation/import": true,
+"animation/remove_immutable_tracks": true,
+"animation/trimming": false,
+"gltf/embedded_image_handling": 1,
+"import_script/path": "res://addons/sprinkly_bag/scene_post_import.gd",
+"meshes/create_shadow_meshes": true,
+"meshes/ensure_tangents": true,
+"meshes/generate_lods": true,
+"meshes/light_baking": 1,
+"meshes/lightmap_texel_size": 0.2,
+"nodes/apply_root_scale": true,
+"nodes/root_name": "Scene Root",
+"nodes/root_scale": 1.0,
+"nodes/root_type": "Node3D",
+"skins/use_named_skins": true
+}
