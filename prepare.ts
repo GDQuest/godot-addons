@@ -1,5 +1,6 @@
 // TODO
-// - run `npm publish --access public`
+// - automate `npm publish --access public`
+// - replace image links from addons `README.md`
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import ini from 'ini'
@@ -40,7 +41,6 @@ const ADDONS_DIR = 'addons'
 const LICENSE_FILE_NAME = 'LICENSE'
 
 const README_FILE_NAME = 'README.md'
-const README_DIR = 'readme'
 const README_HEADER = [
   '# GDQuest Godot Addons',
   '',
@@ -70,10 +70,6 @@ async function main() {
 
       readme = [...readme, `- [${ADDON_CFG.plugin.name}](${ADDON_PATH})`]
       await fs.cp(LICENSE_FILE_NAME, path.join(ADDON_PATH, LICENSE_FILE_NAME))
-
-      const ADDON_README_PATH = path.join(README_DIR, DIR)
-      await fs.rm(ADDON_README_PATH, { force: true, recursive: true })
-      await fs.cp(path.join(ADDON_PATH, ADDON_README_PATH), ADDON_README_PATH, { recursive: true })
     }
     await fs.writeFile(README_FILE_NAME, readme.join('\n'))
   } catch (err) {
