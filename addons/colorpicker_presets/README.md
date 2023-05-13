@@ -15,16 +15,25 @@ The addon:
 
 ## ✓ Install
 
-1. Make a new folder at `res://addons/gdquest_colorpicker_presets/`.
-1. Copy the contents of this repository into `res://addons/gdquest_colorpicker_presets/`.
-1. Replace `res://addons/gdquest_colorpicker_presets/presets.gpl` with your prefered version.
+### Using [Godot Package Manager](https://github.com/godot-package-manager)
+
+1. `gpm init`.
+1. Follow instructions with [NPMjs package](https://www.npmjs.com/package/@razcore-rad/colorpicker_presets).
 1. Enable the addon from `Project > Project Settings... > Plugins`.
 1. Profit.
 
-![install project settings](readme/colorpicker_presets/install_project_settings.png)
+### Manual
+
+1. Make a new folder at `res://addons/colorpicker_presets/`.
+1. Copy the contents of this repository into `res://addons/colorpicker_presets/`.
+1. Replace `res://addons/colorpicker_presets/presets.gpl` with your preferred version.
+1. Enable the addon from `Project > Project Settings... > Plugins`.
+1. Profit.
+
+![install project settings](readme/install_project_settings.png)
 
 ## Where do I find the presets?
 
 They'll be available in the editor _ColorPicker_.
 
-![ColorPicker presets](readme/colorpicker_presets/colorpicker_presets.png)
+![ColorPicker presets](readme/colorpicker_presets.png)

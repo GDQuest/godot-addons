@@ -14,4 +14,4 @@ config/features=PackedStringArray("4.0")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg")
+enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg", "res://addons/kenny_prototype_material/plugin.cfg")
