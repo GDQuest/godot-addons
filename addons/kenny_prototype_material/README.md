@@ -8,6 +8,8 @@ Adds a 3D prototype material called `KennyPrototypeMaterial3D` that uses [CC0 te
 
 > Compatible: Godot `>= v4.0`
 
+## ✓ Install
+
 ### Using [Godot Package Manager](https://github.com/godot-package-manager)
 
 1. `gpm init`.

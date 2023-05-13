@@ -6,7 +6,7 @@ import path from 'node:path'
 import ini from 'ini'
 
 
-const ADDON_SCOPE = '@razcore-rad'
+const ADDON_SCOPE = 'gdquest'
 const ADDON_GITHUB_USER = 'GDQuest'
 const ADDON_CFG_FILE_NAME = 'plugin.cfg'
 const ADDON_PACKAGE_JSON_FILE_NAME = 'package.json'
@@ -63,7 +63,7 @@ async function main() {
         description: ADDON_CFG.plugin.description,
         homepage: `https://github.com/${ADDON_GITHUB_USER}/godot-addons/tree/main/${ADDONS_DIR}/${DIR}#readme`,
         license: LICENSE,
-        name: `${ADDON_SCOPE}/${DIR}`,
+        name: `${ADDON_SCOPE}.${DIR}`,
         version: ADDON_CFG.plugin.version,
       }
       await fs.writeFile(path.join(ADDON_PATH, ADDON_PACKAGE_JSON_FILE_NAME), JSON.stringify(ADDON_PACKAGE_JSON))
