@@ -18,7 +18,7 @@ The addon:
 ### Using [Godot Package Manager](https://github.com/godot-package-manager)
 
 1. `gpm init`.
-1. Follow instructions with [NPMjs package](https://www.npmjs.com/package/@razcore-rad/colorpicker_presets).
+1. Follow instructions with [NPMjs package](https://www.npmjs.com/package/gdquest.colorpicker_presets).
 1. Enable the addon from `Project > Project Settings... > Plugins`.
 1. Profit.
 

@@ -13,7 +13,7 @@ Adds a 3D prototype material called `KennyPrototypeMaterial3D` that uses [CC0 te
 ### Using [Godot Package Manager](https://github.com/godot-package-manager)
 
 1. `gpm init`.
-1. Follow instructions with [NPMjs package](https://www.npmjs.com/package/@razcore-rad/kenny_prototype_material).
+1. Follow instructions with [NPMjs package](https://www.npmjs.com/package/gdquest.kenny_prototype_material) info.
 1. Enable the addon from `Project > Project Settings... > Plugins`.
 1. Profit.
 
