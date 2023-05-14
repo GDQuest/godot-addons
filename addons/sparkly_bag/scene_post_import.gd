@@ -3,6 +3,7 @@ extends EditorScenePostImport
 
 
 const SUFFIXES = ["-anim", "-col"]
+const AABB_SIZE := "aabb_size"
 
 
 func _post_import(scene: Node) -> Object:
@@ -28,7 +29,7 @@ func _post_import(scene: Node) -> Object:
 				if animation_name.ends_with("-noimp"):
 					animation_library.remove_animation(animation_name)
 					continue
-#
+
 				for track_index in range(animation.get_track_count()):
 					var path := animation.track_get_path(track_index)
 					var clean_path := ""
@@ -43,10 +44,25 @@ func _post_import(scene: Node) -> Object:
 						animation.track_set_path(track_index, clean_path)
 
 		if node is MeshInstance3D:
+			var aabb: AABB = node.mesh.get_aabb()
 			for index in range(node.mesh.get_surface_count()):
-				var material_name: StringName = node.mesh.get("surface_%d/name" % index)
-				for path in SparklyBagUtils.fs_find("%s.tres" % material_name.to_snake_case()):
-					node.mesh.surface_set_material(index, load(path))
-					print("Material @ %s" % path)
-					break
+				var material_file_name: StringName = (
+					"%s.tres" % node.mesh.get("surface_%d/name" % index).to_snake_case()
+				)
+				var paths := SparklyBagUtils.fs_find(material_file_name)
+				if paths.is_empty():
+					print(
+						"[ScenePostImport:WARN] Missing material `%s` for `%s`"
+						 % [material_file_name, node.name]
+					)
+				else:
+					for path in paths:
+						var material := load(path)
+						material.set_shader_parameter(AABB_SIZE, aabb.size)
+						node.mesh.surface_set_material(index, material)
+						print(
+							"[ScenePostImport:INFO] Material found @ `%s` for `%s`"
+							 % [path, node.name]
+						)
+						break
 	return scene
