@@ -18,7 +18,7 @@ BackgroundInjector="*res://addons/sparkly_bag/autoloads/background_injector/back
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg", "res://addons/kenny_prototype_material/plugin.cfg", "res://addons/sparkly_bag/plugin.cfg")
+enabled=PackedStringArray("res://addons/kenny_prototype_material/plugin.cfg", "res://addons/sparkly_bag/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg")
 
 [importer_defaults]
 
