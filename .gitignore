@@ -17,3 +17,7 @@ mono_crash.*.json
 node_modules
 addons/*/LICENSE
 addons/*/package.json
+
+# Dev
+dev.tscn
+dev.gd
