@@ -1,7 +1,6 @@
 @tool
 extends EditorScenePostImport
 
-
 const SUFFIXES = ["-anim", "-col"]
 const AABB_SIZE := "aabb_size"
 
@@ -51,18 +50,21 @@ func _post_import(scene: Node) -> Object:
 				)
 				var paths := SparklyBagUtils.fs_find(material_file_name)
 				if paths.is_empty():
-					print(
+					var message := (
 						"[ScenePostImport:WARN] Missing material `%s` for `%s`"
-						 % [material_file_name, node.name]
+						% [material_file_name, node.name]
 					)
+					print(message)
 				else:
 					for path in paths:
 						var material := load(path)
-						material.set_shader_parameter(AABB_SIZE, aabb.size)
+						if material is ShaderMaterial:
+							material.set_shader_parameter(AABB_SIZE, aabb.size)
 						node.mesh.surface_set_material(index, material)
-						print(
+						var message := (
 							"[ScenePostImport:INFO] Material found @ `%s` for `%s`"
-							 % [path, node.name]
+							% [path, node.name]
 						)
+						print(message)
 						break
 	return scene
