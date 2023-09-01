@@ -10,16 +10,15 @@ config_version=5
 
 [application]
 
-run/main_scene="res://dbg.tscn"
-config/features=PackedStringArray("4.0")
+config/features=PackedStringArray("4.1")
 
 [autoload]
 
-ResetNetInjector="*res://addons/sparkly_bag/autoloads/reset_net_injector.gd"
+ResetNetInjector="*res://addons/gdquest_sparkly_bag/autoloads/reset_net_injector.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/colorpicker_presets/plugin.cfg", "res://addons/prototype_material/plugin.cfg", "res://addons/sparkly_bag/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdquest_colorpicker_presets/plugin.cfg", "res://addons/gdquest_prototype_material/plugin.cfg", "res://addons/gdquest_sparkly_bag/plugin.cfg")
 
 [importer_defaults]
 

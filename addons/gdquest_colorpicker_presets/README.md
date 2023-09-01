@@ -15,13 +15,6 @@ The addon:
 
 ## ✓ Install
 
-### Using [Godot Package Manager](https://github.com/godot-package-manager)
-
-1. `gpm init`.
-1. Follow instructions with [NPMjs package](https://www.npmjs.com/package/gdquest.colorpicker_presets).
-1. Enable the addon from `Project > Project Settings... > Plugins`.
-1. Profit.
-
 ### Manual
 
 1. Make a new folder at `res://addons/colorpicker_presets/`.

@@ -1,9 +1,0 @@
-{
-  "devDependencies": {
-    "@types/ini": "^1.3.31",
-    "@types/node": "^20.1.3"
-  },
-  "dependencies": {
-    "ini": "^4.1.0"
-  }
-}
