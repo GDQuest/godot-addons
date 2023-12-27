@@ -1,18 +1,14 @@
-# GDQuest Godot Addons
+# GDQuest Theme Utils
 
-This is part of a GDQuest Godot repository containing multiple addons:
-
-- [GDQuest ColorPicker Presets](addons/gdquest_colorpicker_presets)
-- [GDQuest Prototype Material](addons/gdquest_prototype_material)
-- [GDQuest Sparkly Bag](addons/gdquest_sparkly_bag)
-- [GDQuest Theme Utils](addons/gdquest_theme_utils)
+Is a collection of utilities dealing with themes for developing consistent plugin UIs.
 
 ## ✓ Install
 
 ### Manual
 
-1. Copy any `addons/PLUGIN_NAME` into `res://addons/PLUGIN_NAME`.
+1. Copy the contents of this folder into `res://addons/gdquest_sparkly_bag/`.
 1. Enable the addon from `Project > Project Settings... > Plugins`.
+1. Profit.
 
 ### gd-plug
 
@@ -27,9 +23,13 @@ This is part of a GDQuest Godot repository containing multiple addons:
   func _plugging() -> void:
   	plug(
   		"git@github.com:GDQuest/godot-addons.git",
-  		{include = ["addons/PLUGIN_NAME"]}
+  		{include = ["addons/gdquest_theme_utils"]}
   	)
   ```
 
 1. On Linux, make the `res://plug.gd` script executable with `chmod +x plug.gd`.
 1. Using the command line, run `./plug.gd install` or `godot --headless --script plug.gd install`.
+
+## Notes
+
+These functions are extracted from theme utils in [Godot Tours](https://github.com/GDQuest/godot-tours/).

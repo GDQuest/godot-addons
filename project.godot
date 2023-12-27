@@ -10,15 +10,19 @@ config_version=5
 
 [application]
 
-config/features=PackedStringArray("4.1")
+config/features=PackedStringArray("4.2")
 
 [autoload]
 
 ResetNetInjector="*res://addons/gdquest_sparkly_bag/autoloads/reset_net_injector.gd"
 
+[dotnet]
+
+project/assembly_name="UnnamedProject"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdquest_colorpicker_presets/plugin.cfg", "res://addons/gdquest_prototype_material/plugin.cfg", "res://addons/gdquest_sparkly_bag/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdquest_colorpicker_presets/plugin.cfg", "res://addons/gdquest_prototype_material/plugin.cfg", "res://addons/gdquest_sparkly_bag/plugin.cfg", "res://addons/gdquest_theme_utils/plugin.cfg", "res://addons/theme_utils/plugin.cfg")
 
 [importer_defaults]
 
