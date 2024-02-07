@@ -1,10 +1,9 @@
 ## Functions to process UI Theme properties. In particular, provides functions to scale theme values with the editor scale.
 @tool
-class_name ThemeUtils
 extends RefCounted
 
-
 static var editor_scale := EditorInterface.get_editor_scale()
+
 
 ## Gets and scales the font_size theme override of the input text_node using the editor scale.
 ## Adds a font size override to text_node directly.
@@ -42,7 +41,9 @@ static func generate_scaled_theme(theme_resource: Theme) -> Theme:
 	var theme_types := Array(new_theme.get_font_size_type_list()) + ["TitleLabel"]
 	for theme_type in theme_types:
 		for font_size_property in new_theme.get_font_size_list(theme_type):
-			var font_size: int = new_theme.get_font_size( font_size_property, theme_type) + size_difference
+			var font_size: int = (
+				new_theme.get_font_size(font_size_property, theme_type) + size_difference
+			)
 			var new_font_size: int = font_size * editor_scale
 			new_theme.set_font_size(font_size_property, theme_type, new_font_size)
 

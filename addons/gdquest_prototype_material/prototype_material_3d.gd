@@ -1,6 +1,5 @@
 @tool
-class_name PrototypeMaterial3D extends StandardMaterial3D
-
+extends StandardMaterial3D
 
 const TEXTURE_FILENAME := "checkerboard.png"
 
