@@ -38,3 +38,12 @@ static func fs_remove_dir(base_path: String) -> void:
 	for path in paths:
 		DirAccess.remove_absolute(path)
 	DirAccess.remove_absolute(base_path)
+
+
+static func fs_copy_dir(from_path: String, to_path: String) -> void:
+	for dir_path in DirAccess.get_directories_at(from_path):
+		for file_path in fs_find("*", from_path.path_join(dir_path)):
+			var destination_file_path := file_path.replace(from_path, to_path)
+			var destination_dir_path := destination_file_path.get_base_dir()
+			DirAccess.make_dir_recursive_absolute(destination_dir_path)
+			DirAccess.copy_absolute(file_path, destination_file_path)
