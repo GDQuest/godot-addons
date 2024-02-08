@@ -1,6 +1,8 @@
 @tool
 extends EditorScenePostImport
 
+const Utils := preload("sparkly_bag_utils.gd")
+
 const SUFFIXES = ["-anim", "-col"]
 const AABB_SIZE := "aabb_size"
 
@@ -48,7 +50,7 @@ func _post_import(scene: Node) -> Object:
 				var material_file_name: StringName = (
 					"%s.tres" % node.mesh.get("surface_%d/name" % index).to_snake_case()
 				)
-				var paths := SparklyBagUtils.fs_find(material_file_name)
+				var paths := Utils.fs_find(material_file_name)
 				if paths.is_empty():
 					var message := (
 						"[ScenePostImport:WARN] Missing material `%s` for `%s`"
