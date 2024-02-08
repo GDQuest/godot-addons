@@ -40,11 +40,13 @@ static func fs_remove_dir(base_path: String) -> void:
 	DirAccess.remove_absolute(base_path)
 
 
-static func fs_copy_dir(from_path: String, to_path: String) -> void:
+static func fs_copy_dir(from_path: String, to_path: String, ignore: Array[String] = []) -> void:
 	var dir := DirAccess.open(from_path)
 	from_path = dir.get_current_dir()
 	var from_base_path := from_path.get_base_dir()
-	for file_path in fs_find("*", from_path):
+	for file_path: String in fs_find("*", from_path):
+		if ignore.any(func(p: String) -> bool: return file_path.match(p)):
+			continue
 		var destination_file_path := file_path.replace(from_base_path, to_path)
 		var destination_dir_path := destination_file_path.get_base_dir()
 		DirAccess.make_dir_recursive_absolute(destination_dir_path)
