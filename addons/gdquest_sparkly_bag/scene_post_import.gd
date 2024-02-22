@@ -50,15 +50,18 @@ func _post_import(scene: Node) -> Object:
 				var material_file_name: StringName = (
 					"%s.tres" % node.mesh.get("surface_%d/name" % index).to_snake_case()
 				)
-				var paths := Utils.fs_find(material_file_name)
-				if paths.is_empty():
+				var found := Utils.fs_find(material_file_name)
+				if found.return_code != Utils.ReturnCode.OK:
+					return scene
+
+				if found.is_empty():
 					var message := (
 						"[ScenePostImport:WARN] Missing material `%s` for `%s`"
 						% [material_file_name, node.name]
 					)
 					print(message)
 				else:
-					for path in paths:
+					for path: String in found.result:
 						var material := load(path)
 						if material is ShaderMaterial:
 							material.set_shader_parameter(AABB_SIZE, aabb.size)

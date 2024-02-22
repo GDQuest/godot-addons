@@ -18,6 +18,5 @@ var texture: Texture2D = null
 
 
 func _init() -> void:
-	super()
 	texture = load(get_script().resource_path.get_base_dir().path_join(TEXTURE_FILENAME))
 	uv1_triplanar_sharpness = 4.0
