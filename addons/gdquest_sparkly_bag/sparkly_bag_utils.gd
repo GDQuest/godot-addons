@@ -88,7 +88,7 @@ static func os_execute(exe: String, args: Array, do_read_stderr := true) -> Retu
 	return ReturnCode.FAIL if is_fail else (return_code as ReturnCode)
 
 
-static func os_parse_args(supported_args: Array = []) -> Dictionary:
+static func os_parse_user_args(supported_args: Array = []) -> Dictionary:
 	var result := {}
 
 	const ARG_HELP := ["-h", "--help", "Show this help message."]

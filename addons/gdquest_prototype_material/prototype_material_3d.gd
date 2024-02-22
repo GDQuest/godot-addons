@@ -1,5 +1,5 @@
 @tool
-extends StandardMaterial3D
+class_name GDQuestPrototypeMaterial3D extends StandardMaterial3D
 
 const TEXTURE_FILENAME := "checkerboard.png"
 

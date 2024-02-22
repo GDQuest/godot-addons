@@ -7,7 +7,6 @@ Is a collection of utilities dealing with themes for developing consistent plugi
 ### Manual
 
 1. Copy the contents of this folder into `res://addons/gdquest_sparkly_bag/`.
-1. Enable the addon from `Project > Project Settings... > Plugins`.
 1. Profit.
 
 ### gd-plug
