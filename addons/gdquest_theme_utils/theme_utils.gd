@@ -1,6 +1,6 @@
-## Functions to process UI Theme properties. In particular, provides functions to scale theme values with the editor scale.
+## Provides functions to scale the theme resource and theme properties.
+## The editor scale is used to scale the theme.
 @tool
-extends RefCounted
 
 static var editor_scale := EditorInterface.get_editor_scale()
 
@@ -8,7 +8,6 @@ static var editor_scale := EditorInterface.get_editor_scale()
 ## Gets and scales the font_size theme override of the input text_node using the editor scale.
 ## Adds a font size override to text_node directly.
 static func scale_font_size(text_node: Node) -> void:
-	print(editor_scale)
 	var title_font_size: int = text_node.get_theme_font_size("font_size")
 	text_node.add_theme_font_size_override("font_size", title_font_size * editor_scale)
 
