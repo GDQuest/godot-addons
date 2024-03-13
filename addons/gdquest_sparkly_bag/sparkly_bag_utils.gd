@@ -1,6 +1,6 @@
 const SEP := "/"
 
-enum ReturnCode { OK, FAIL, SKIP, EXE_NOT_FOUND = 127, CODE_NOT_FOUND }
+enum ReturnCode { OK, FAIL, WARN, SKIP, EXE_NOT_FOUND = 127, CODE_NOT_FOUND }
 
 
 class Result:
@@ -11,7 +11,7 @@ class Result:
 		self.result = result
 
 
-static func fs_find(pattern: String = "*", path: String = "res://", do_fail := true) -> Result:
+static func fs_find(pattern: String = "*", path: String = "res://", do_include_hidden := true, do_fail := true) -> Result:
 	const TAG := { ReturnCode.FAIL: "FAIL", ReturnCode.SKIP: "SKIP" }
 
 	var result: Result = Result.new([])
@@ -19,6 +19,8 @@ static func fs_find(pattern: String = "*", path: String = "res://", do_fail := t
 	pattern = pattern.rstrip(SEP)
 
 	var dir := DirAccess.open(path)
+	dir.include_hidden = do_include_hidden
+
 	if DirAccess.get_open_error() != OK:
 		result.return_code = ReturnCode.FAIL if do_fail else ReturnCode.SKIP
 		printerr("%s: could not open [%s]" % [TAG[result.return_code], path])
@@ -88,8 +90,8 @@ static func os_execute(exe: String, args: Array, do_read_stderr := true) -> Retu
 	return ReturnCode.FAIL if is_fail else (return_code as ReturnCode)
 
 
-static func os_parse_user_args(supported_args: Array = []) -> Dictionary:
-	var result := {}
+static func os_parse_user_args(help_description := [], supported_args := []) -> Result:
+	var result := Result.new({args = {}})
 
 	const ARG_HELP := ["-h", "--help", "Show this help message."]
 	supported_args = [ARG_HELP] + supported_args
@@ -99,29 +101,31 @@ static func os_parse_user_args(supported_args: Array = []) -> Dictionary:
 		var args := a.filter(is_arg_predicate)
 		var help_message := a.filter(func(s: String) -> bool: return not s.begins_with("-"))
 		return "  %s" % "\n\t".join([" ".join(args), "".join(help_message)])
-	var help_message := ["Arguments"] + supported_args.map(arg_to_help)
+	var help_message := help_description + ["Arguments"] + supported_args.map(arg_to_help)
+	result.result.help_message = "\n".join(help_message)
 
-	var user_args := OS.get_cmdline_user_args()
-	for arg in ARG_HELP.filter(func(a: String) -> bool: return a in user_args):
-		print_rich("\n".join(help_message))
+	result.result.user_args = OS.get_cmdline_user_args()
+	if not ARG_HELP.filter(func(a: String) -> bool: return a in result.result.user_args).is_empty():
+		print_rich(result.result.help_message)
 		return result
 
 	var flat_supported_args := flatten(supported_args).filter(is_arg_predicate)
 	var unknown_args: Array[String] = []
-	for arg in user_args:
+	for arg: String in result.result.user_args:
 		var parts := arg.split("=")
 		var key := parts[0]
 		if key in flat_supported_args:
-			result[key] = parts[1] if parts.size() == 2 else null
+			result.result.args[key] = parts[1] if parts.size() == 2 else null
 		else:
 			unknown_args.push_back(key)
 
 	if not unknown_args.is_empty():
 		var message := [
-			"[color=orange]SKIP: Unknown command-line arguments %s.[/color]" % str(unknown_args),
+			"Unknown command-line arguments %s." % str(unknown_args),
 			"Supported arguments %s." % str(flat_supported_args),
 		]
-		print_rich(" ".join(message))
+		push_warning(" ".join(message))
+		result.return_code = ReturnCode.WARN
 	return result
 
 
