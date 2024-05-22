@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/features=PackedStringArray("4.2")
+config/name="GDQuest Addonss"
+config/features=PackedStringArray("4.3")
+config/icon="res://icon.svg"
 
 [dotnet]
 
@@ -18,7 +20,7 @@ project/assembly_name="UnnamedProject"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdquest_colorpicker_presets/plugin.cfg", "res://addons/gdquest_prototype_material/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdquest_colorpicker_presets/plugin.cfg", "res://addons/gdquest_prototype_material/plugin.cfg", "res://addons/gdquest_vector_3d/plugin.cfg")
 
 [importer_defaults]
 
