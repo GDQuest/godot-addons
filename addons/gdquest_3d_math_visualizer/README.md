@@ -1,8 +1,8 @@
-# GDQuest Vector3D
+# GDQuest 3D Math Visualizer
 
-Adds a `Vector3D` node for visualizing 3D vectors in real-time and in the editor.
+Adds a `Vector3D`, `Basis3D` and `Quaternion` nodes for visualizing 3D math concepts in real-time and in the editor.
 
-It has controls for:
+`Vector3D` has controls for:
 
 - *Stem Radius*: the radius of the base cylinder mesh.
 - *Pointer Radius*: the radius for the cone mesh at the top pointing the direction.
@@ -18,7 +18,7 @@ It has controls for:
 
 ### Manual
 
-1. Copy the contents of this folder into `res://addons/gdquest_vector_3d/`.
+1. Copy the contents of this folder into `res://addons/gdquest_3d_math_visualizer/`.
 1. Enable the addon from `Project > Project Settings... > Plugins`.
 1. Profit.
 
@@ -35,7 +35,7 @@ It has controls for:
   func _plugging() -> void:
   	plug(
   		"git@github.com:GDQuest/godot-addons.git",
-  		{include = ["addons/gdquest_vector_3d"]}
+  		{include = ["addons/gdquest_3d_math_visualizer"]}
   	)
   ```
 

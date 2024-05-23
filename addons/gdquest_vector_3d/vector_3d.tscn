@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3kyqtveqatpo"]
-
-[ext_resource type="Script" path="res://addons/gdquest_vector_3d/vector_3d.gd" id="1_tujeq"]
-
-[node name="Vector3D" type="Node3D"]
-script = ExtResource("1_tujeq")
