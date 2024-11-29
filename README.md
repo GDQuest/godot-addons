@@ -6,7 +6,7 @@ This is part of a GDQuest Godot repository containing multiple addons:
 - [GDQuest Prototype Material](addons/gdquest_prototype_material)
 - [GDQuest Sparkly Bag](addons/gdquest_sparkly_bag)
 - [GDQuest Theme Utils](addons/gdquest_theme_utils)
-- [GDQuest Vector3D](addons/gdquest_vector_3d)
+- [GDQuest Vector3D](addons/gdquest_3d_math_visualizer)
 
 ## ✓ Install
 
