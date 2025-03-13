@@ -1,6 +1,15 @@
-## Provides functions to scale the theme resource and theme properties.
-## The editor scale is used to scale the theme.
+## Functions to process UI Theme properties. In particular, provides functions to scale theme values with the editor scale.
 @tool
+
+const FALLBACK_FONT_LANGUAGES := ["ja"]
+const FALLBACK_FONT_FMT := "res://addons/gdquest_theme_utils/fallback/noto_sans%s_%s.ttf"
+const FALLBACK_FONT_MAP := {
+	"bold_font": "bold",
+	"italics_font": "italic",
+	"mono_font": "mono",
+	"normal_font": "regular",
+	"font": "regular"
+}
 
 
 ## Gets and scales the font_size theme override of the input text_node using the editor scale.
@@ -13,11 +22,14 @@ static func scale_font_size(text_node: Control) -> void:
 
 ## Gets and scales the margins of the input margin_container using the editor scale.
 ## Adds a theme constant override for each margin property directly.
-static func scale_margin_container_margins(margin_container: MarginContainer) -> void:
+static func scale_margin_container_margins(margin_container: MarginContainer, extra_scale: Dictionary[String, float] = {}) -> void:
 	var editor_scale := EditorInterface.get_editor_scale()
+	if is_equal_approx(editor_scale, 1.0):
+		return
+
 	for property in ["margin_left", "margin_right", "margin_top", "margin_bottom"]:
 		var margin: int = margin_container.get_theme_constant(property)
-		margin_container.add_theme_constant_override(property, margin * editor_scale)
+		margin_container.add_theme_constant_override(property, margin * editor_scale * extra_scale.get(property, 1.0))
 
 
 ## Returns a new theme object, a deep copy of theme_resource, with properties scaled
@@ -82,3 +94,22 @@ static func generate_scaled_theme(theme_resource: Theme) -> Theme:
 				stylebox.expand_margin_top *= editor_scale
 				stylebox.expand_margin_bottom *= editor_scale
 	return new_theme
+
+
+static func request_fallback_font(theme: Theme) -> Theme:
+	var settings := EditorInterface.get_editor_settings()
+	var language: String = settings.get("interface/editor/editor_language")
+	if not language in FALLBACK_FONT_LANGUAGES:
+		return theme
+
+	language = "_%s" % language
+	var result := theme.duplicate()
+	result.default_font = load(FALLBACK_FONT_FMT % [language, "regular"])
+	for type in result.get_font_type_list():
+		for font: String in result.get_font_list(type):
+			if result.has_font(font, type):
+				var font_file_path: String = FALLBACK_FONT_FMT % [language, FALLBACK_FONT_MAP[font]]
+				prints(font, font_file_path, FileAccess.file_exists(font_file_path))
+				if FileAccess.file_exists(font_file_path):
+					result.set_font(font, type, load(font_file_path))
+	return result
