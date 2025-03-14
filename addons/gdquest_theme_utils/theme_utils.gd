@@ -69,6 +69,11 @@ static func generate_scaled_theme(theme_resource: Theme) -> Theme:
 	for stylebox_type in new_theme.get_stylebox_type_list():
 		for stylebox_name in new_theme.get_stylebox_list(stylebox_type):
 			var stylebox: StyleBox = new_theme.get_stylebox(stylebox_name, stylebox_type)
+			stylebox.content_margin_left *= editor_scale
+			stylebox.content_margin_right *= editor_scale
+			stylebox.content_margin_top *= editor_scale
+			stylebox.content_margin_bottom *= editor_scale
+
 			if stylebox is StyleBoxFlat:
 				stylebox.border_width_bottom *= editor_scale
 				stylebox.border_width_left *= editor_scale
@@ -84,11 +89,6 @@ static func generate_scaled_theme(theme_resource: Theme) -> Theme:
 				stylebox.shadow_size *= editor_scale
 
 			if stylebox is StyleBoxFlat or stylebox is StyleBoxTexture:
-				stylebox.content_margin_left *= editor_scale
-				stylebox.content_margin_right *= editor_scale
-				stylebox.content_margin_top *= editor_scale
-				stylebox.content_margin_bottom *= editor_scale
-
 				stylebox.expand_margin_left *= editor_scale
 				stylebox.expand_margin_right *= editor_scale
 				stylebox.expand_margin_top *= editor_scale
