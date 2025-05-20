@@ -109,7 +109,6 @@ static func request_fallback_font(theme: Theme) -> Theme:
 		for font: String in result.get_font_list(type):
 			if result.has_font(font, type):
 				var font_file_path: String = FALLBACK_FONT_FMT % [language, FALLBACK_FONT_MAP[font]]
-				prints(font, font_file_path, FileAccess.file_exists(font_file_path))
 				if FileAccess.file_exists(font_file_path):
 					result.set_font(font, type, load(font_file_path))
 	return result
