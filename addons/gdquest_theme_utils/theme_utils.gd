@@ -64,7 +64,7 @@ static func generate_scaled_theme(theme_resource: Theme) -> Theme:
 		for constant in new_theme.get_constant_list(theme_type):
 			var constant_value: int = new_theme.get_constant(constant, theme_type)
 			var new_value: int = constant_value * editor_scale
-			new_theme.set_constant(theme_type, constant, new_value)
+			new_theme.set_constant(constant, theme_type, new_value)
 
 	for stylebox_type in new_theme.get_stylebox_type_list():
 		for stylebox_name in new_theme.get_stylebox_list(stylebox_type):
