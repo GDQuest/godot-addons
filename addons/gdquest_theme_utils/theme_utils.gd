@@ -37,7 +37,7 @@ static func scale_margin_container_margins(margin_container: MarginContainer, ex
 ## Making a deep copy ensures values don't get scaled and saved when working on an addon's
 ## user interface.
 static func generate_scaled_theme(theme_resource: Theme) -> Theme:
-	var new_theme = theme_resource.duplicate(true)
+	var new_theme := theme_resource.duplicate_deep()
 	var editor_scale := EditorInterface.get_editor_scale()
 
 	# Scale font sizes
@@ -69,6 +69,21 @@ static func generate_scaled_theme(theme_resource: Theme) -> Theme:
 	for stylebox_type in new_theme.get_stylebox_type_list():
 		for stylebox_name in new_theme.get_stylebox_list(stylebox_type):
 			var stylebox: StyleBox = new_theme.get_stylebox(stylebox_name, stylebox_type)
+
+			# Godot 4.5.0 workaround: duplicate() doesn't make resources coming
+			# from files unique anymore (I've tested all modes of
+			# duplicate_deep() and the good old duplicate(true)).
+			#
+			# This causes issues when scaling the theme of an addon's UI, as
+			# if you're referencing a file in the theme, that file will get
+			# scaled and saved.
+			#
+			# We manually make any stylebox that comes from a file unique
+			# by duplicating it before scaling.
+			if not stylebox.resource_path.is_empty():
+				stylebox = stylebox.duplicate()
+				new_theme.set_stylebox(stylebox_name, stylebox_type, stylebox)
+
 			stylebox.content_margin_left *= editor_scale
 			stylebox.content_margin_right *= editor_scale
 			stylebox.content_margin_top *= editor_scale
@@ -103,12 +118,13 @@ static func request_fallback_font(theme: Theme) -> Theme:
 		return theme
 
 	language = "_%s" % language
-	var result := theme.duplicate()
+	var result := theme.duplicate_deep()
 	result.default_font = load(FALLBACK_FONT_FMT % [language, "regular"])
 	for type in result.get_font_type_list():
 		for font: String in result.get_font_list(type):
 			if result.has_font(font, type):
 				var font_file_path: String = FALLBACK_FONT_FMT % [language, FALLBACK_FONT_MAP[font]]
+				prints(font, font_file_path, FileAccess.file_exists(font_file_path))
 				if FileAccess.file_exists(font_file_path):
 					result.set_font(font, type, load(font_file_path))
 	return result
