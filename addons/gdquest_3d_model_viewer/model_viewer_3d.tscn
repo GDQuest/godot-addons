@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://birqyoesacalq"]
+
+[ext_resource type="Script" uid="uid://bijckwsxrp35q" path="res://addons/gdquest_3d_model_viewer/model_viewer_3d.gd" id="1_3jhs4"]
+[ext_resource type="PackedScene" uid="uid://bfs31qyude6h2" path="res://addons/gdquest_3d_model_viewer/model_tag.tscn" id="5_nubxs"]
+[ext_resource type="Shader" uid="uid://cmu4l7tiy7ipg" path="res://addons/gdquest_3d_model_viewer/assets/shaders/ground.gdshader" id="6_s8bys"]
+[ext_resource type="Script" uid="uid://dku3luw8maxcb" path="res://addons/gdquest_3d_model_viewer/turner.gd" id="7_0tn27"]
+[ext_resource type="Material" uid="uid://cqdapslfy1rva" path="res://addons/gdquest_3d_model_viewer/assets/materials/background_mat.tres" id="8_nxs1c"]
+[ext_resource type="Theme" uid="uid://dioqrbukc6tl0" path="res://addons/gdquest_3d_model_viewer/main_theme.tres" id="10_l4eat"]
+[ext_resource type="Script" uid="uid://b3iqdl3p46v67" path="res://addons/gdquest_3d_model_viewer/animation_selector.gd" id="10_ylcjv"]
+[ext_resource type="Script" uid="uid://c64vs8kud8f6g" path="res://addons/gdquest_3d_model_viewer/parameters.gd" id="11_rc064"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4cejc"]
+ground_horizon_color = Color(0.898039, 0.898039, 0.905882, 1)
+
+[sub_resource type="Sky" id="Sky_fa2m7"]
+sky_material = SubResource("ProceduralSkyMaterial_4cejc")
+
+[sub_resource type="Environment" id="Environment_cw67r"]
+background_mode = 1
+background_color = Color(0.105882, 0.105882, 0.105882, 1)
+sky = SubResource("Sky_fa2m7")
+ambient_light_source = 2
+ambient_light_color = Color(0.52549, 0.52549, 0.52549, 1)
+tonemap_mode = 2
+tonemap_exposure = 1.1
+tonemap_white = 0.9
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25vcg"]
+render_priority = 0
+shader = ExtResource("6_s8bys")
+shader_parameter/grid_color = Color(0.764706, 0.815686, 0.878431, 1)
+shader_parameter/grid_opacity = 0.025
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pcsvn"]
+size = Vector2(4, 4)
+
+[sub_resource type="QuadMesh" id="QuadMesh_purc5"]
+size = Vector2(2, 1)
+
+[node name="MainViewer3D" type="Node3D" unique_id=108620119]
+script = ExtResource("1_3jhs4")
+
+[node name="TopLayer" type="CanvasLayer" parent="." unique_id=777647477]
+
+[node name="UI" type="Control" parent="TopLayer" unique_id=2058062860]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("10_l4eat")
+
+[node name="ModelTag" parent="TopLayer/UI" unique_id=1361303440 instance=ExtResource("5_nubxs")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_top = 960.0
+offset_right = 233.0
+offset_bottom = 1048.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AnimationSelector" type="OptionButton" parent="TopLayer/UI" unique_id=1921797003]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -87.0
+offset_right = 41.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("10_ylcjv")
+
+[node name="Parameters" type="MarginContainer" parent="TopLayer/UI" unique_id=279777813]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -345.0
+offset_top = -148.0
+offset_right = -32.0
+offset_bottom = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("11_rc064")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLayer/UI/Parameters" unique_id=372076039]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="World" type="Node3D" parent="." unique_id=1162647123]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=901073223]
+environment = SubResource("Environment_cw67r")
+
+[node name="Ground" type="MeshInstance3D" parent="World" unique_id=2114575408]
+material_override = SubResource("ShaderMaterial_25vcg")
+mesh = SubResource("PlaneMesh_pcsvn")
+skeleton = NodePath("../..")
+
+[node name="Turner" type="Node3D" parent="World" unique_id=187472368]
+unique_name_in_owner = true
+transform = Transform3D(0.906308, 0.0368336, -0.42101, 0, 0.996195, 0.0871557, 0.422618, -0.0789899, 0.902859, 0, 0.6, 0)
+script = ExtResource("7_0tn27")
+metadata/_edit_group_ = true
+
+[node name="Camera3D" type="Camera3D" parent="World/Turner" unique_id=2081982148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+current = true
+fov = 60.0
+
+[node name="BackgroundPlane" type="MeshInstance3D" parent="World/Turner" unique_id=1743819967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+material_override = ExtResource("8_nxs1c")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_purc5")
+skeleton = NodePath("../..")
+
+[node name="FrontLight" type="DirectionalLight3D" parent="World/Turner" unique_id=1558543365]
+transform = Transform3D(0.707107, -0.298836, 0.640856, -1.49012e-08, 0.906308, 0.422618, -0.707107, -0.298836, 0.640856, 0, -0.609801, 1.49012e-08)
+light_energy = 0.65
+shadow_enabled = true
+directional_shadow_max_distance = 20.0
+directional_shadow_pancake_size = 0.0
+
+[node name="BackLight" type="OmniLight3D" parent="World/Turner" unique_id=2124554185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.653888, 0, -0.722009)
+light_energy = 0.5
+omni_attenuation = 0.554785
+
+[node name="ModelHolder" type="Node3D" parent="World" unique_id=314357684]
+unique_name_in_owner = true
