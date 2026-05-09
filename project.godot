@@ -18,6 +18,11 @@ config/name="GDQuest Addonss"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [dotnet]
 
 project/assembly_name="UnnamedProject"

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bfs31qyude6h2"]
 
-[ext_resource type="Shader" uid="uid://cjhwwbt4lmm4r" path="res://model_viewer/assets/shaders/icon.gdshader" id="1_mtufu"]
-[ext_resource type="Script" uid="uid://fjjqhq0cww4g" path="res://model_viewer/model_tag.gd" id="1_xy4n0"]
-[ext_resource type="Texture2D" uid="uid://ya08nse1qni2" path="res://character_icon.png" id="3_vur6e"]
+[ext_resource type="Shader" uid="uid://cjhwwbt4lmm4r" path="res://addons/gdquest_3d_model_viewer/assets/shaders/icon.gdshader" id="1_mtufu"]
+[ext_resource type="Script" uid="uid://fjjqhq0cww4g" path="res://addons/gdquest_3d_model_viewer/model_tag.gd" id="1_xy4n0"]
+[ext_resource type="Texture2D" uid="uid://d3xuk6nxtd2ll" path="res://addons/gdquest_3d_model_viewer/assets/textures/character_icon.png" id="3_vur6e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chjiq"]
 bg_color = Color(0, 0, 0, 1)
@@ -14,28 +14,28 @@ corner_radius_bottom_left = 62
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fsaak"]
 shader = ExtResource("1_mtufu")
 
-[node name="ModelTag" type="PanelContainer"]
+[node name="ModelTag" type="PanelContainer" unique_id=1162679046]
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_chjiq")
 script = ExtResource("1_xy4n0")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=186510816]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
 
-[node name="Item" type="HBoxContainer" parent="MarginContainer"]
+[node name="Item" type="HBoxContainer" parent="MarginContainer" unique_id=1660313654]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="Icon" type="TextureRect" parent="MarginContainer/Item"]
+[node name="Icon" type="TextureRect" parent="MarginContainer/Item" unique_id=104257084]
 texture_filter = 4
 material = SubResource("ShaderMaterial_fsaak")
 custom_minimum_size = Vector2(64, 64)
@@ -43,6 +43,6 @@ layout_mode = 2
 texture = ExtResource("3_vur6e")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="MarginContainer/Item"]
+[node name="Label" type="Label" parent="MarginContainer/Item" unique_id=1947328618]
 layout_mode = 2
 text = "Model name"

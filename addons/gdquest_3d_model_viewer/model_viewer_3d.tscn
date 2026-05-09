@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://cmu4l7tiy7ipg" path="res://addons/gdquest_3d_model_viewer/assets/shaders/ground.gdshader" id="6_s8bys"]
 [ext_resource type="Script" uid="uid://dku3luw8maxcb" path="res://addons/gdquest_3d_model_viewer/turner.gd" id="7_0tn27"]
 [ext_resource type="Material" uid="uid://cqdapslfy1rva" path="res://addons/gdquest_3d_model_viewer/assets/materials/background_mat.tres" id="8_nxs1c"]
-[ext_resource type="Theme" uid="uid://dioqrbukc6tl0" path="res://addons/gdquest_3d_model_viewer/main_theme.tres" id="10_l4eat"]
+[ext_resource type="Theme" uid="uid://dioqrbukc6tl0" path="res://addons/gdquest_3d_model_viewer/assets/main_theme.tres" id="10_l4eat"]
 [ext_resource type="Script" uid="uid://b3iqdl3p46v67" path="res://addons/gdquest_3d_model_viewer/animation_selector.gd" id="10_ylcjv"]
 [ext_resource type="Script" uid="uid://c64vs8kud8f6g" path="res://addons/gdquest_3d_model_viewer/parameters.gd" id="11_rc064"]
 
@@ -56,17 +56,20 @@ theme = ExtResource("10_l4eat")
 
 [node name="ModelTag" parent="TopLayer/UI" unique_id=1361303440 instance=ExtResource("5_nubxs")]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 32.0
-offset_top = 960.0
-offset_right = 233.0
-offset_bottom = 1048.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -120.0
+offset_right = 281.0
+offset_bottom = -32.0
 grow_horizontal = 1
-grow_vertical = 1
+grow_vertical = 0
 
 [node name="AnimationSelector" type="OptionButton" parent="TopLayer/UI" unique_id=1921797003]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

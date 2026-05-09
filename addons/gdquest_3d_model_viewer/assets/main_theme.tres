@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://dioqrbukc6tl0"]
 
-[ext_resource type="Texture2D" uid="uid://b3hg20sllwpo" path="res://addons/gdquest_3d_model_viewer/assets/textures/down_arrow_icon.png" id="1_8g03f"]
+[ext_resource type="Texture2D" uid="uid://b5klea7tmi5su" path="res://addons/gdquest_3d_model_viewer/assets/textures/down_arrow_icon.svg" id="1_23gp8"]
+[ext_resource type="FontFile" uid="uid://b8pmr856lnmnx" path="res://addons/gdquest_3d_model_viewer/assets/fonts/Montserrat-Bold.ttf" id="2_513xy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa11v"]
 content_margin_left = 4.0
@@ -46,6 +47,34 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="Gradient" id="Gradient_3iwxq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.5883117, 0.725974, 1)
+colors = PackedColorArray(0.20080861, 0.20080861, 0.20080861, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0yq6g"]
+gradient = SubResource("Gradient_3iwxq")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_mfhqx"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.5883117, 1)
+colors = PackedColorArray(0.20080861, 0.20080861, 0.20080861, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_isgqv"]
+gradient = SubResource("Gradient_mfhqx")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdvkf"]
 content_margin_left = 12.0
 content_margin_top = 8.0
@@ -74,18 +103,22 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [resource]
+default_font = ExtResource("2_513xy")
+default_font_size = 36
 HBoxContainer/constants/separation = 8
 HSlider/styles/slider = SubResource("StyleBoxFlat_aa11v")
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 8
-OptionButton/constants/arrow_margin = 8
-OptionButton/icons/arrow = ExtResource("1_8g03f")
+OptionButton/constants/arrow_margin = 16
+OptionButton/icons/arrow = ExtResource("1_23gp8")
 OptionButton/styles/focus = SubResource("StyleBoxFlat_4wrdr")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_4wrdr")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_xvkoa")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_txpvc")
+PopupMenu/icons/radio_checked = SubResource("GradientTexture2D_0yq6g")
+PopupMenu/icons/radio_unchecked = SubResource("GradientTexture2D_isgqv")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_cdvkf")
 VBoxContainer/constants/separation = 8
 VScrollBar/styles/scroll = SubResource("StyleBoxFlat_yvg6q")

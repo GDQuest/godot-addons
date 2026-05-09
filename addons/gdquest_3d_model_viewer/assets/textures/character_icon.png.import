@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3hg20sllwpo"
-path="res://.godot/imported/down_arrow_icon.png-56987a7081ac27d2dfa59fa8a45ee52d.ctex"
+uid="uid://d3xuk6nxtd2ll"
+path="res://.godot/imported/character_icon.png-799f25f24f6c491faf9e806269677d57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/gdquest_3d_model_viewer/assets/textures/down_arrow_icon.png"
-dest_files=["res://.godot/imported/down_arrow_icon.png-56987a7081ac27d2dfa59fa8a45ee52d.ctex"]
+source_file="res://addons/gdquest_3d_model_viewer/assets/textures/character_icon.png"
+dest_files=["res://.godot/imported/character_icon.png-799f25f24f6c491faf9e806269677d57.ctex"]
 
 [params]
 
