@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://birqyoesacalq"]
 
 [ext_resource type="Script" uid="uid://bijckwsxrp35q" path="res://addons/gdquest_3d_model_viewer/model_viewer_3d.gd" id="1_3jhs4"]
+[ext_resource type="Resource" uid="uid://dc7wkocr2c2uv" path="res://beebot/model/beebot_model_data.tres" id="2_huevd"]
 [ext_resource type="PackedScene" uid="uid://bfs31qyude6h2" path="res://addons/gdquest_3d_model_viewer/model_tag.tscn" id="5_nubxs"]
 [ext_resource type="Shader" uid="uid://cmu4l7tiy7ipg" path="res://addons/gdquest_3d_model_viewer/assets/shaders/ground.gdshader" id="6_s8bys"]
 [ext_resource type="Script" uid="uid://dku3luw8maxcb" path="res://addons/gdquest_3d_model_viewer/turner.gd" id="7_0tn27"]
@@ -41,6 +42,7 @@ size = Vector2(2, 1)
 
 [node name="MainViewer3D" type="Node3D" unique_id=108620119]
 script = ExtResource("1_3jhs4")
+model_data = ExtResource("2_huevd")
 
 [node name="TopLayer" type="CanvasLayer" parent="." unique_id=777647477]
 

@@ -117,6 +117,7 @@ OptionButton/styles/focus = SubResource("StyleBoxFlat_4wrdr")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_4wrdr")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_xvkoa")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_txpvc")
+PopupMenu/constants/h_separation = 16
 PopupMenu/icons/radio_checked = SubResource("GradientTexture2D_0yq6g")
 PopupMenu/icons/radio_unchecked = SubResource("GradientTexture2D_isgqv")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_cdvkf")
